@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Un mesaj de primavara</title>
+
+  <!-- Fonts (optional, safe) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Special+Elite&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f5efe6;         /* warm beige */
+      --ink:#1b1b1b;        /* near black */
+      --muted:#6b6b6b;
+      --card:#ffffffb5;
+      --border:#00000018;
+      --radius:22px;
+      --shadow: 0 18px 50px rgba(0,0,0,.10);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, var(--bg) 55%, #efe6da 100%);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .wrap{
+      width:min(860px, 100%);
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:clamp(18px, 3.2vw, 34px);
+      backdrop-filter: blur(8px);
+    }
+
+    .top{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:#ffffff80;
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:.2px;
+    }
+
+    .title{
+      font-family: "Special Elite", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: clamp(20px, 2.6vw, 28px);
+      margin: 8px 0 14px 0;
+      letter-spacing:.2px;
+    }
+
+    .msg{
+      font-size: clamp(15px, 1.8vw, 17px);
+      white-space: pre-wrap;
+    }
+
+    .signature{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px dashed var(--border);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .hand{
+      font-family: "Caveat", cursive;
+      font-size: clamp(22px, 3.2vw, 30px);
+    }
+
+    .small{
+      color:var(--muted);
+      font-size: 13px;
+    }
+
+    .player{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    button:active{ transform: translateY(1px); }
+
+    .hint{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Hidden but accessible container for YouTube iframe */
+    #yt{
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      left: -9999px;
+      top: -9999px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="top">
+        <div class="tag">🌼 Mesaj de primavara</div>
+        <div class="tag" id="audioStatus">🎵 Muzica: se pregateste…</div>
+      </div>
+
+      <div class="title">Pentru Cristina</div>
+
+      <div class="msg" id="message">
+Draga mea Cristina,
+
+Sunt oameni care ajuta.
+Si sunt oameni care sunt acolo. Tu esti din a doua categorie.
+
+Esti omul care sare mereu in ajutor when in need. Omul pe care te poti baza atunci cand iti este greu. A shoulder to cry on, chiar si atunci cand umerii tai duc deja atatea emotii, provocari si greutati ale altora.
+
+Nu e deloc usor sa tii spatiu pentru toti. Sa asculti. Sa sustii. Sa ramai.
+And yet… you do. Mereu.
+
+Daca ar fi sa iti multumesc pentru ceva anume, ar fi pentru willingness-ul tau de a fi acolo cand nimeni altcineva nu este. Pentru linistea pe care o aduci. Pentru siguranta pe care o simt cand stiu ca esti aproape.
+
+Nu o sa uit niciodata implicarea si daruirea ta pentru al doilea cel mai emotionant moment din viata noastra: nunta.
+Andrei alergand prin Piatra Neamt cu Dragos dupa nasturi in ziua nuntii, noi aprinzand impreuna un lampion (instead of our husbands 😄)… haos, emotie, ras si tu – prezenta in mijlocul tuturor, tinand totul in echilibru.
+
+Will never forget everything you did for me. Nici gesturile mari. Nici pe cele mici. Mai ales pe cele mici.
+
+Iti multumesc ca esti omul care ramane. 🤍
+      </div>
+
+      <div class="signature">
+        <div class="hand">Cu drag, cu timp, cu suflet, Miha</div>
+        <div class="small">PS: Daca muzica nu porneste cu sunet, apasa butonul de mai jos (telefoanele blocheaza autoplay cu sunet).</div>
+      </div>
+
+      <div class="player">
+        <button id="soundBtn" type="button">Porneste cu sunet</button>
+        <span class="hint">Daca nu vrei muzica, poti lasa asa — mesajul ramane.</span>
+      </div>
+
+      <!-- YouTube player injected here -->
+      <div id="yt"></div>
+    </section>
+  </main>
+
+  <script>
+    // Load YouTube IFrame API
+    (function loadYT(){
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+    })();
+
+    let player;
+    const audioStatus = document.getElementById('audioStatus');
+    const soundBtn = document.getElementById('soundBtn');
+
+    // Your link:
+    // https://www.youtube.com/watch?v=BX5oe_2hkog&list=RDBX5oe_2hkog&start_radio=1
+    // For embedding, we use the VIDEO ID:
+    const VIDEO_ID = "BX5oe_2hkog";
+
+    window.onYouTubeIframeAPIReady = function() {
+      player = new YT.Player('yt', {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          mute: 1,         // autoplay allowed when muted
+          start: 0
+        },
+        events: {
+          onReady: (e) => {
+            try {
+              e.target.playVideo();
+              audioStatus.textContent = "🎵 Muzica: pornita (muted)";
+            } catch (err) {
+              audioStatus.textContent = "🎵 Muzica: apasa 'Porneste cu sunet'";
+            }
+          },
+          onStateChange: (e) => {
+            // 1 = playing
+            if (e.data === 1) {
+              // playing
+            }
+          }
+        }
+      });
+    };
+
+    soundBtn.addEventListener('click', () => {
+      if (!player) return;
+      try{
+        player.unMute();
+        player.setVolume(80);
+        player.playVideo();
+        audioStatus.textContent = "🎵 Muzica: pornita (cu sunet)";
+      } catch(e){
+        audioStatus.textContent = "🎵 Muzica: nu s-a putut porni (incearca inca o data)";
+      }
+    });
+  </script>
+</body>
+</html>
